@@ -1,5 +1,6 @@
 # Typescript Express Server Build & Run Guide <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png" style="width:2rem;"> <img src="https://img.icons8.com/fluency/48/null/node-js.png" style="width:2rem;">
 
+<br>
 
 <h3>Build For Development</h3>
 <ol>
@@ -15,12 +16,12 @@
   <li>npm run build</li>
 </ol>
 
-<h3>Run For Cloud</h3>
-<ul>
-  <li>npm start</li>
-</ul>
-
 <h3>Run For Development</h3>
 <ul>
   <li>nodemon</li>
+</ul>
+
+<h3>Run For Cloud</h3>
+<ul>
+  <li>npm start</li>
 </ul>
