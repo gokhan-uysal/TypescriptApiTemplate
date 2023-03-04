@@ -4,9 +4,9 @@ import { RedisClientType, createClient } from 'redis';
 import { config } from './config/config';
 
 const app = express();
+const redisClient: RedisClientType = createClient();
 app.use(express.json());
 
-const redisClient: RedisClientType = createClient();
 redisClient
     .connect()
     .then(() => {
