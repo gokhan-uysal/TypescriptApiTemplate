@@ -7,13 +7,13 @@ exports.Logger = void 0;
 const chalk_1 = __importDefault(require("chalk"));
 class Logger {
     static info = (args) => {
-        console.log(chalk_1.default.blueBright(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] [INFO] ${args}`));
+        console.log(chalk_1.default.blueBright(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] [INFO]`), typeof args === 'string' ? chalk_1.default.blue(args) : args);
     };
     static warning = (args) => {
-        console.log(chalk_1.default.yellowBright(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] [WARNING] ${args}`));
+        console.log(chalk_1.default.yellowBright(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] [WARNING]`), typeof args === 'string' ? chalk_1.default.yellow(args) : args);
     };
     static error = (args) => {
-        console.log(chalk_1.default.redBright(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] [ERROR] ${args}`));
+        console.log(chalk_1.default.redBright(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] [ERROR]`), typeof args === 'string' ? chalk_1.default.red(args) : args);
     };
 }
 exports.Logger = Logger;
