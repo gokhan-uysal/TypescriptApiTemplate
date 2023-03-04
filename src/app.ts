@@ -2,19 +2,19 @@ import express from 'express';
 import { Request, Response } from 'express';
 import { rules, requestLogger } from './config/middleware';
 import mongoose from 'mongoose';
-import { RedisClientType, createClient } from 'redis';
 import { config } from './config/config';
 import { Logger } from './library/logger';
+import { RedisHelper } from './helper/redis-helper';
 
 const app = express();
-const redisClient: RedisClientType = createClient();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(requestLogger);
 app.use(rules);
 
-connectRedis(async () => {
+const redisHelper = new RedisHelper();
+
+redisHelper.connectRedis(async () => {
     connectMongo(() => {
         startServer();
     });
@@ -26,22 +26,9 @@ app.get('/', (req: Request, res: Response, next) => {
 
 app.use((req: Request, res: Response) => {
     const error = new Error('Endpoint not found');
-    Logger.error(error.message);
+    Logger.error(error);
     return res.status(404).json({ message: error.message });
 });
-
-async function connectRedis(cb: Function) {
-    await redisClient
-        .connect()
-        .then(() => {
-            Logger.info('Redis connected');
-            return cb();
-        })
-        .catch((err: Error) => {
-            Logger.error(`Redis ${err.message}`);
-            return;
-        });
-}
 
 async function connectMongo(cb: Function) {
     await mongoose
@@ -51,7 +38,7 @@ async function connectMongo(cb: Function) {
             return cb();
         })
         .catch((err: Error) => {
-            Logger.error(`Mongo ${err.message}`);
+            Logger.error(err);
             return;
         });
 }
