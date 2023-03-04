@@ -31,3 +31,4 @@ mongoose_1.default
 app.listen(config_1.config.server.port, () => {
     console.log(`Server is listenning on port ${config_1.config.server.port}`);
 });
+//# sourceMappingURL=app.js.map
