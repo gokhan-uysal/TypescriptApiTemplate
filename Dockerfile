@@ -6,4 +6,5 @@ COPY package*.json ./
 COPY ./ .
 RUN npm install
 EXPOSE 3000
-CMD [ "node", "./src/app.ts" ]
+RUN node run build
+CMD ["node", "start"]
