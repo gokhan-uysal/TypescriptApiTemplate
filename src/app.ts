@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import { RedisClientType, createClient } from 'redis';
 import { config } from './config/config';
+import { Logger } from './library/logger';
 
 const app = express();
 const redisClient: RedisClientType = createClient();
@@ -10,7 +11,7 @@ app.use(express.json());
 redisClient
     .connect()
     .then(() => {
-        console.log('Redis connected');
+        Logger.info('Redis connected');
     })
     .catch((err) => {
         console.log(err);
@@ -20,7 +21,7 @@ redisClient
 mongoose
     .connect(config.mongo.url, { retryWrites: true, w: 'majority' })
     .then(() => {
-        console.log('Mongodb connected');
+        Logger.info('Mongo connected');
     })
     .catch((err) => {
         console.log(err);
@@ -28,5 +29,5 @@ mongoose
     });
 
 app.listen(config.server.port, () => {
-    console.log(`Server is listenning on port ${config.server.port}`);
+    Logger.info(`Server is listenning on port ${config.server.port}`);
 });
