@@ -5,9 +5,9 @@ export class Logger {
         console.log(chalk.blueBright(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] [INFO] ${args}`));
     };
     public static warning = (args: string | number) => {
-        console.log(chalk.yellowBright(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] [INFO] ${args}`));
+        console.log(chalk.yellowBright(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] [WARNING] ${args}`));
     };
     public static error = (args: string | number) => {
-        console.log(chalk.redBright(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] [INFO] ${args}`));
+        console.log(chalk.redBright(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] [ERROR] ${args}`));
     };
 }
