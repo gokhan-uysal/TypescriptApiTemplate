@@ -14,28 +14,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(requestLogger);
 app.use(rules);
 
-redisClient
-    .connect()
-    .then(() => {
-        Logger.info('Redis connected');
-    })
-    .catch((err) => {
-        console.log(err);
-        return;
-    });
-
-mongoose
-    .connect(config.mongo.url, { retryWrites: true, w: 'majority' })
-    .then(() => {
-        Logger.info('Mongo connected');
-    })
-    .catch((err) => {
-        console.log(err);
-        return;
-    });
-
-app.listen(config.server.port, () => {
-    Logger.info(`Server is listenning on port ${config.server.port}`);
+connectRedis(async () => {
+    await connectMongo();
 });
 
 app.get('/', (req: Request, res: Response, next) => {
@@ -47,3 +27,35 @@ app.use((req: Request, res: Response) => {
     Logger.error(error.message);
     return res.status(404).json({ message: error.message });
 });
+
+async function connectRedis(cb: Function) {
+    await redisClient
+        .connect()
+        .then(() => {
+            Logger.info('Redis connected');
+            return cb();
+        })
+        .catch((err: Error) => {
+            Logger.error(`Redis ${err.message}`);
+            return;
+        });
+}
+
+async function connectMongo() {
+    await mongoose
+        .connect(config.mongo.url, { retryWrites: true, w: 'majority' })
+        .then(() => {
+            Logger.info('Mongo connected');
+            startServer();
+        })
+        .catch((err: Error) => {
+            Logger.error(`Mongo ${err.message}`);
+            return;
+        });
+}
+
+function startServer() {
+    app.listen(config.server.port, () => {
+        Logger.info(`Server is listenning on port ${config.server.port}`);
+    });
+}
