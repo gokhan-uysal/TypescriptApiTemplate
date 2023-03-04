@@ -8,6 +8,7 @@
 
 <h3>Build For Cloud</h3>
 <ol>
+<li>npm install</li>
 <li>npm run clear</li>
 <li>npm run build</li>
 </ol>
