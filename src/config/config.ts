@@ -5,7 +5,7 @@ dotenv.config();
 //Mongo config
 const MONGO_USER: string = process.env.MONGO_USER || '';
 const MONGO_PASSWORD: string = process.env.MONGO_PASSWORD || '';
-const MONGO_URL: string = `${MONGO_USER} ${MONGO_PASSWORD}`;
+const MONGO_URL: string = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@r2d2.oioszvx.mongodb.net/`;
 
 //Redis config
 const REIDS_PORT: string = process.env.REDIS_PORT || '6379';
