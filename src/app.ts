@@ -15,7 +15,9 @@ app.use(requestLogger);
 app.use(rules);
 
 connectRedis(async () => {
-    await connectMongo();
+    connectMongo(() => {
+        startServer();
+    });
 });
 
 app.get('/', (req: Request, res: Response, next) => {
@@ -41,12 +43,12 @@ async function connectRedis(cb: Function) {
         });
 }
 
-async function connectMongo() {
+async function connectMongo(cb: Function) {
     await mongoose
         .connect(config.mongo.url, { retryWrites: true, w: 'majority' })
         .then(() => {
             Logger.info('Mongo connected');
-            startServer();
+            return cb();
         })
         .catch((err: Error) => {
             Logger.error(`Mongo ${err.message}`);
