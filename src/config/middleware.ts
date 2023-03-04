@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import { Logger } from '../library/logger';
 
-export let errorHandler = (req: Request, res: Response, next: NextFunction) => {
-    const error = new Error('Endpoint not found');
+export let authenticator = (req: Request, res: Response, next: NextFunction) => {};
+
+export let errorHandler = (error: Error, req: Request, res: Response, next: NextFunction) => {
     Logger.error(error.message);
     return res.status(404).json({ message: error.message });
 };

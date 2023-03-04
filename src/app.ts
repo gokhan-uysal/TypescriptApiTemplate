@@ -12,7 +12,6 @@ const redisClient: RedisClientType = createClient();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(requestLogger);
-//app.use(errorHandler);
 app.use(rules);
 
 redisClient
@@ -40,6 +39,11 @@ app.listen(config.server.port, () => {
 });
 
 app.get('/', (req: Request, res: Response, next) => {
-    Logger.info('Handshake done');
     return res.sendStatus(200);
+});
+
+app.use((req: Request, res: Response) => {
+    const error = new Error('Endpoint not found');
+    Logger.error(error.message);
+    return res.status(404).json({ message: error.message });
 });
