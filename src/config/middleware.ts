@@ -15,7 +15,11 @@ export let rules = (req: Request, res: Response, next: NextFunction) => {
 
 export let requestLogger = (req: Request, res: Response, next: NextFunction) => {
     res.on('finish', () => {
-        Logger.info(`[${res.statusCode}] [${req.method}] [${req.url}] [${req.socket.remoteAddress}]`);
+        if (res.statusCode >= 200 && res.statusCode <= 302) {
+            Logger.info(`[${res.statusCode}] [${req.method}] [${req.url}] [${req.socket.remoteAddress}]`);
+        } else {
+            Logger.error(`[${res.statusCode}] [${req.method}] [${req.url}] [${req.socket.remoteAddress}]`);
+        }
     });
     next();
 };
