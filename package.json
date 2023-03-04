@@ -4,7 +4,8 @@
     "main": "src/app.ts",
     "scripts": {
         "test": "src/test.ts",
-        "start": "src/app.ts",
+        "build": "rm -rf build/ && tsc",
+        "start": "node build/app.js",
         "lint": "prettier"
     },
     "author": "Gökhan Uysal",
