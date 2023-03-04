@@ -1,10 +1,10 @@
 import express from 'express';
 import { Request, Response } from 'express';
 import { rules, requestLogger } from './config/middleware';
-import mongoose from 'mongoose';
 import { config } from './config/config';
 import { Logger } from './library/logger';
 import { RedisHelper } from './helper/redis-helper';
+import { MongoHelper } from './helper/mongo-helper';
 
 const app = express();
 app.use(express.json());
@@ -13,9 +13,10 @@ app.use(requestLogger);
 app.use(rules);
 
 const redisHelper = new RedisHelper();
+const mongoHelper = new MongoHelper(config.mongo.url);
 
 redisHelper.connectRedis(async () => {
-    connectMongo(() => {
+    mongoHelper.connectMongo(() => {
         startServer();
     });
 });
@@ -29,19 +30,6 @@ app.use((req: Request, res: Response) => {
     Logger.error(error);
     return res.status(404).json({ message: error.message });
 });
-
-async function connectMongo(cb: Function) {
-    await mongoose
-        .connect(config.mongo.url, { retryWrites: true, w: 'majority' })
-        .then(() => {
-            Logger.info('Mongo connected');
-            return cb();
-        })
-        .catch((err: Error) => {
-            Logger.error(err);
-            return;
-        });
-}
 
 function startServer() {
     app.listen(config.server.port, () => {
