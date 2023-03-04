@@ -1,10 +1,9 @@
 # Typescript Express Server Build & Run Guide
 
-<h3>Build For The First Time In Development</h3>
-<ol>
+<h3>Build For Development</h3>
+<ul>
 <li>npm install</li>
-<li>nodemon</li>
-</ol>
+</ul>
 
 <h3>Build For Cloud</h3>
 <ol>
