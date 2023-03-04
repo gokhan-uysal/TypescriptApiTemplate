@@ -5,7 +5,7 @@
 <ol>
   <li><a href="https://nodejs.org/en/download/" target="_blank">Install lates node version</a></li>
   <li>npm install</li>
-  <li>npm install -g typescript</li>
+  <li>sudo npm install -g typescript &ensp; -> &ensp; <b>Root user password required</b></li>
 </ol>
 
 <h3>Build For Cloud</h3>
