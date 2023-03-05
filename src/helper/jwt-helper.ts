@@ -1,12 +1,15 @@
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 export class JwtHelper {
     public constructor() {}
 
-    async verifyToken(token: string, accesToken: string) {
-        return jwt.verify(token, accesToken, (err, token): any | undefined => {
+    verifyToken(token: string, accesToken: string): void {
+        return jwt.verify(token, accesToken, (err, token): JwtPayload | string => {
             if (err) {
                 throw err;
+            }
+            if (token === undefined) {
+                throw new Error('Token is undefined');
             }
             return token;
         });
