@@ -32,7 +32,7 @@ app.use((req: Request, res: Response) => {
 });
 
 function startServer() {
-    app.listen(config.server.port, () => {
+    app.listen(config.server.port, async () => {
         Logger.info(`Server is listenning on port ${config.server.port}`);
     });
 }
