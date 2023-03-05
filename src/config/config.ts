@@ -1,4 +1,6 @@
 import dotenv from 'dotenv';
+import crypto from 'crypto';
+
 dotenv.config();
 
 //Mongo config
@@ -35,14 +37,14 @@ export const config = {
 
 function getJwtAccessToken(): string {
     if (process.env.JWT_ACCESS_TOKEN === undefined) {
-        throw new Error('Jwt access token not found');
+        return crypto.randomBytes(64).toString('hex');
     }
     return process.env.JWT_ACCESS_TOKEN;
 }
 
 function getJwtRefreshToken(): string {
     if (process.env.JWT_REFRESH_TOKEN === undefined) {
-        throw new Error('Jwt access token not found');
+        return crypto.randomBytes(64).toString('hex');
     }
     return process.env.JWT_REFRESH_TOKEN;
 }
