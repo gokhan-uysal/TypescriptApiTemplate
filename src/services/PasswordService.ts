@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
-export class BcryptHelper {
+
+export class PasswordService {
     private salt: number;
     public constructor(salt: number) {
         this.salt = salt;

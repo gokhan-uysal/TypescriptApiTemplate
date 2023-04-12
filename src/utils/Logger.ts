@@ -1,6 +1,9 @@
 import chalk from 'chalk';
 
 export class Logger {
+    public static log = (args: any) => {
+        console.log(args);
+    };
     public static info = (args: any) => {
         console.log(chalk.blueBright(`[${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}] [INFO]`), typeof args === 'string' ? chalk.blue(args) : args);
     };
