@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { Logger } from '../utils/Logger';
-import { IpLimiter } from '../types/Types';
-import { HttpError } from '../utils/Error';
+import { Logger } from '../utils/logger';
+import { IpLimiter } from '../types/types';
+import { HttpError } from '../utils/error';
 
 const onboardIpMap: Map<string, IpLimiter> = new Map<string, IpLimiter>();
 

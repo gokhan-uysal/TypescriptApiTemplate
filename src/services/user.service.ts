@@ -1,10 +1,10 @@
-import { Mail } from '../types/Types';
-import { UserRepository } from '../repositories/UserRepository';
-import { PasswordService } from './PasswordService';
-import { MailService } from './MailService';
-import { TokenService } from './TokenService';
-import { ErrorMessage } from '../utils/Error';
-import { MapHelper } from '../utils/MapHelper';
+import { Mail } from '../types/types';
+import { UserRepository } from '../repositories/user.repository';
+import { PasswordService } from './password.service';
+import { MailService } from './mail.service';
+import { TokenService } from './token.service';
+import { ErrorMessage } from '../utils/error';
+import { MapHelper } from '../utils/map.helper';
 
 export class UserService {
     private _userRepository: UserRepository;

@@ -1,6 +1,6 @@
 import { MysqlError, Pool, PoolConnection, createPool } from 'mysql';
 import { config } from '../config/Config';
-import { Logger } from '../utils/Logger';
+import { Logger } from '../utils/logger';
 
 export class ConnectionPool {
     private static shared: ConnectionPool;

@@ -1,9 +1,9 @@
 import { config } from '../config/Config';
-import { UserRepository } from '../repositories/UserRepository';
-import { MailService } from '../services/MailService';
-import { PasswordService } from '../services/PasswordService';
-import { TokenService } from '../services/TokenService';
-import { UserService } from '../services/UserService';
+import { UserRepository } from '../repositories/user.repository';
+import { MailService } from '../services/mail.service';
+import { PasswordService } from '../services/password.service';
+import { TokenService } from '../services/token.service';
+import { UserService } from '../services/user.service';
 
 //Repositories
 export const userRepository = new UserRepository();

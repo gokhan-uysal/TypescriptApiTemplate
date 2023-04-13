@@ -1,10 +1,10 @@
 import express from 'express';
 import { config } from './config/Config';
-import { requestLogger, errorHandler } from './middleware/Middleware';
-import { Logger } from './utils/Logger';
-import { api } from './routers/ApiRouter';
-import { user } from './routers/UserRouter';
-import { ConnectionPool } from './connections/ConnectionPool';
+import { requestLogger, errorHandler } from './middleware/middleware';
+import { Logger } from './utils/logger';
+import { api } from './routers/api.router';
+import { user } from './routers/user.router';
+import { ConnectionPool } from './connections/pool.connection';
 
 const app = express();
 

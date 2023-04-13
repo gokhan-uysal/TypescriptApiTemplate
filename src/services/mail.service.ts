@@ -1,6 +1,6 @@
 import { Transporter, createTransport } from 'nodemailer';
-import { Logger } from '../utils/Logger';
-import { Mail } from '../types/Types';
+import { Logger } from '../utils/logger';
+import { Mail } from '../types/types';
 
 export class MailService {
     private mailUser: string;
